@@ -15,6 +15,8 @@ var Game = (function () {
     fld: [null, null, null, null, null, null, null, null, null], //Row1: 0, 1, 2; Row2: 3, 4, 5; Row3: 6, 7, 8;
   };
 
+  var _intervalID = null;
+
   var _generateRandomPositive = function(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
   }
@@ -115,15 +117,21 @@ var Game = (function () {
         break;
       case 5: // HUMAN_WIN
         _gs.status = 1; // WAIT
-        _ui.humanWin(endGame, _gs.fld[0], _gs.fld[1], _gs.fld[2], _gs.fld[3], _gs.fld[4], _gs.fld[5], _gs.fld[6], _gs.fld[7], _gs.fld[8], _gs.cpuSign, _gs.humanSign);
+        setTimeout(
+          _ui.humanWin(endGame, _gs.fld[0], _gs.fld[1], _gs.fld[2], _gs.fld[3], _gs.fld[4], _gs.fld[5], _gs.fld[6], _gs.fld[7], _gs.fld[8], _gs.cpuSign, _gs.humanSign),
+          100);
         break;
       case 6: // CPU_WIN
         _gs.status = 1; // WAIT
-        _ui.cpuWin(endGame, _gs.fld[0], _gs.fld[1], _gs.fld[2], _gs.fld[3], _gs.fld[4], _gs.fld[5], _gs.fld[6], _gs.fld[7], _gs.fld[8], _gs.cpuSign, _gs.humanSign);
+        setTimeout(
+          _ui.cpuWin(endGame, _gs.fld[0], _gs.fld[1], _gs.fld[2], _gs.fld[3], _gs.fld[4], _gs.fld[5], _gs.fld[6], _gs.fld[7], _gs.fld[8], _gs.cpuSign, _gs.humanSign),
+          100);
         break;
       case 7: // DEADLOCK
         _gs.status = 1; // WAIT
-        _ui.deadlock(endGame, _gs.fld[0], _gs.fld[1], _gs.fld[2], _gs.fld[3], _gs.fld[4], _gs.fld[5], _gs.fld[6], _gs.fld[7], _gs.fld[8], _gs.cpuSign, _gs.humanSign);
+        setTimeout(
+          _ui.deadlock(endGame, _gs.fld[0], _gs.fld[1], _gs.fld[2], _gs.fld[3], _gs.fld[4], _gs.fld[5], _gs.fld[6], _gs.fld[7], _gs.fld[8], _gs.cpuSign, _gs.humanSign),
+          100);
         break;
       default:
         break;
@@ -140,7 +148,8 @@ var Game = (function () {
       throw Error('Please pass UI module inside function start');
     }
     _ui = ui;
-    intervalID = setInterval(loop, 1000 / _ui.config.FPS);
+    window.onload = _ui.setup.bind(_ui, exitHandler);
+    _intervalID = setInterval(loop, 1000 / _ui.config.FPS);
   };
 
   var startAnswer = function(isPlay) {
@@ -187,15 +196,29 @@ var Game = (function () {
   var checkField = function() { // Return null for continue, -1 for deadlock; 0 for cpu win, 1 for human win
     // Check winner
     for(var win = 0; win <= 1; win++) {
-      if ((_gs.fld[0] == win && _gs.fld[1] == win && _gs.fld[2] == win) ||      //row 1
-          (_gs.fld[3] == win && _gs.fld[4] == win && _gs.fld[5] == win) ||      //row 2
-          (_gs.fld[6] == win && _gs.fld[7] == win && _gs.fld[8] == win) ||      //row 3
-          (_gs.fld[0] == win && _gs.fld[3] == win && _gs.fld[6] == win) ||      //column 1
-          (_gs.fld[1] == win && _gs.fld[4] == win && _gs.fld[7] == win) ||      //column 2
-          (_gs.fld[2] == win && _gs.fld[5] == win && _gs.fld[8] == win) ||      //column 3
-          (_gs.fld[0] == win && _gs.fld[4] == win && _gs.fld[8] == win) ||      //diag 1
-          (_gs.fld[2] == win && _gs.fld[4] == win && _gs.fld[6] == win)         //diag 2
-      ){
+      if (_gs.fld[0] == win && _gs.fld[1] == win && _gs.fld[2] == win) {        //row 1
+        _ui.showWinLine(0, 1, 2);
+        return win;
+      } else if (_gs.fld[3] == win && _gs.fld[4] == win && _gs.fld[5] == win) { //row 2
+        _ui.showWinLine(3, 4, 5);
+        return win;
+      } else if (_gs.fld[6] == win && _gs.fld[7] == win && _gs.fld[8] == win) { //row 3
+        _ui.showWinLine(6, 7, 8);
+        return win;
+      } else if (_gs.fld[0] == win && _gs.fld[3] == win && _gs.fld[6] == win) { //column 1
+        _ui.showWinLine(0, 3, 6);
+        return win;
+      } else if (_gs.fld[1] == win && _gs.fld[4] == win && _gs.fld[7] == win) { //column 2
+        _ui.showWinLine(1, 4, 7);
+        return win;
+      } else if (_gs.fld[2] == win && _gs.fld[5] == win && _gs.fld[8] == win) { //column 3
+        _ui.showWinLine(2, 5, 8);
+        return win;
+      } else if (_gs.fld[0] == win && _gs.fld[4] == win && _gs.fld[8] == win) { //diag 1
+        _ui.showWinLine(0, 4, 8);
+        return win;
+      } else if (_gs.fld[2] == win && _gs.fld[4] == win && _gs.fld[6] == win) { //diag 2
+        _ui.showWinLine(2, 4, 6);
         return win;
       }
     }
@@ -217,8 +240,12 @@ var Game = (function () {
     _gs.status = 0; // NOT_STARTED
   };
 
+  var exitHandler = function() {
+    _gs.status = -1; // EXIT
+  };
+
   var stop = function () {
-    clearInterval(intervalID);
+    clearInterval(_intervalID);
   };
 
   return {

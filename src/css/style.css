@@ -1,3 +1,144 @@
-    body {
+body {
   margin: 0;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+table {
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+td {
+  width: 220px;
+  height: 220px;
+  min-width: 220px;
+  min-height: 220px;
+}
+
+.cell {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.symbol {
+  font-size: 140px;
+}
+
+#cell0 {
+  border-right: 8px solid #333;
+  border-bottom: 8px solid #333;
+}
+
+#cell1 {
+  border-left: 8px solid #333;
+  border-right: 8px solid #333;
+  border-bottom: 8px solid #333;
+}
+
+#cell2 {
+  border-left: 8px solid #333;
+  border-bottom: 8px solid #333;
+}
+
+#cell3 {
+  border-right: 8px solid #333;
+  border-top: 8px solid #333;
+  border-bottom: 8px solid #333;
+}
+
+#cell4 {
+  border: 8px solid #333;
+}
+
+#cell5 {
+  border-left: 8px solid #333;
+  border-top: 8px solid #333;
+  border-bottom: 8px solid #333;
+}
+
+#cell6 {
+  border-right: 8px solid #333;
+  border-top: 8px solid #333;
+}
+
+#cell7 {
+  border-left: 8px solid #333;
+  border-right: 8px solid #333;
+  border-top: 8px solid #333;
+}
+
+#cell8 {
+  border-left: 8px solid #333;
+  border-top: 8px solid #333;
+}
+
+.modal-fader {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 99998;
+  background: rgba(0,0,0,0.8);
+}
+
+.modal-fader.active {
+  display: block;
+}
+
+.modal-window {
+  display: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 99999;
+  background: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  font-family: sans-serif;
+  top: 50px;
+}
+
+.modal-window.active {
+  display: block;
+}
+
+.modal-window h1,
+.modal-window h2,
+.modal-window h3,
+.modal-window h4,
+.modal-window h5,
+.modal-window h6 {
+  margin: 0;
+}
+
+.modal-btn {
+  background: #36a5a5;
+  border: none;
+  color: #fff;
+  padding: 10px 15px;
+  margin: 0px 10px;
+  box-shadow: none;
+  border-radius: 3px;
+  text-decoration: none;
+}
+
+.yes {
+  background: green;
+}
+
+.no {
+  background: red;
+}
+
+.border {
+  border: 2px solid #333;
 }

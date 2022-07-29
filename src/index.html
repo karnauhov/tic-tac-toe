@@ -1,15 +1,59 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  	<meta charset="UTF-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Tic-tac-toe</title>
+	<link rel="icon" type="image/x-icon" href="./img/favicon.ico">
 	<link rel="stylesheet" href="./css/style.css">
-	<script type="text/javascript" src="./js/UIdraft.js"></script>
+	<!-- <script type="text/javascript" src="./js/UIdraft.js"></script> -->
+	<script type="text/javascript" src="./js/UIdom.js"></script>
 	<script type="text/javascript" src="./js/Game.js"></script>
 </head>
 <body>
-	
+	<div>
+		<table>
+			<tbody>
+				<tr>
+					<td class="cell" id="cell0"><span class="symbol" id="symbol0"></span></td>
+					<td class="cell" id="cell1"><span class="symbol" id="symbol1"></span></td>
+					<td class="cell" id="cell2"><span class="symbol" id="symbol2"></span></td>
+				</tr>
+				<tr>
+					<td class="cell" id="cell3"><span class="symbol" id="symbol3"></span></td>
+					<td class="cell" id="cell4"><span class="symbol" id="symbol4"></span></td>
+					<td class="cell" id="cell5"><span class="symbol" id="symbol5"></span></td>
+				</tr>
+				<tr>
+					<td class="cell" id="cell6"><span class="symbol" id="symbol6"></span></td>
+					<td class="cell" id="cell7"><span class="symbol" id="symbol7"></span></td>
+					<td class="cell" id="cell8"><span class="symbol" id="symbol8"></span></td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="center">Use for controls: &#x2190;  &#x2191;  &#x2192;  &#x2193;  Enter  Esc</div>
+	</div>
+	<div id="modalStart" class="modal-window">
+		<h2>Would you like to play Tic Tac Toe?</h2>
+		<p></p>
+		<div class="center">
+			<button class="modal-btn modal-hide yes">Yes (Enter)</button>
+			<button class="modal-btn modal-hide no">No (Esc)</button>
+		</div>
+	</div>
+	<div id="modalExit" class="modal-window">
+		<h2>Are you sure you want to exit?</h2>
+		<p></p>
+		<div class="center">
+			<button class="modal-btn modal-hide yes">Yes (Enter)</button>
+			<button class="modal-btn modal-hide no">No (Esc)</button>
+		</div>
+	</div>
+	<div id="modalEnd" class="modal-window border">
+		<h2 id="endMessage"></h2>
+		<p></p>
+	</div>
+	<div class="modal-fader"></div>
 	<script type="text/javascript" src="./js/index.js"></script>
 </body>
 </html>

@@ -26,6 +26,10 @@ var UIdraft = (function () {
     return message;
   };
 
+  var setup = function() {
+    // Nothing to setup in this UI version
+  };
+
   var updateFrame = function(gameStatus, f0, f1, f2, f3, f4, f5, f6, f7, f8, s0, s1) {
     // Nothing to update in this UI version
   };
@@ -92,18 +96,24 @@ var UIdraft = (function () {
     }
   };
 
+  var showWinLine= function(index1, index2, index3) {
+    // Nothing to show in this UI version
+  };
+
   var exit = function(exitUrl) {
     window.location.replace(exitUrl);
   };
 
   return {
     config: config,
+    setup: setup,
     updateFrame: updateFrame,
     showStartQuestion: showStartQuestion,
     beginHumanTurn: beginHumanTurn,
     humanWin: humanWin,
     cpuWin: cpuWin,
     deadlock: deadlock,
+    showWinLine: showWinLine,
     exit: exit,
   };
 

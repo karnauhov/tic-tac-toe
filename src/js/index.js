@@ -1,2 +1,2 @@
-
-Game.start(UIdraft);
+// Game.start(UIdraft);
+Game.start(UIdom);
