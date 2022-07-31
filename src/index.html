@@ -9,9 +9,11 @@
 	<!-- <script type="text/javascript" src="./js/UIdraft.js"></script> -->
 	<script type="text/javascript" src="./js/UIdom.js"></script>
 	<script type="text/javascript" src="./js/Game.js"></script>
+	<script type="text/javascript" src="./js/Ads.js"></script>
+	<script src="//imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
 </head>
 <body>
-	<div>
+	<div id="mainContainer" class="center">
 		<table>
 			<tbody>
 				<tr>
@@ -32,6 +34,9 @@
 			</tbody>
 		</table>
 		<div class="center">Use for controls: &#x2190;  &#x2191;  &#x2192;  &#x2193;  Enter  Esc</div>
+
+		<video id="video-element" controls></video>
+		<div id="ad-container"></div>
 	</div>
 	<div id="modalStart" class="modal-window">
 		<h2>Would you like to play Tic Tac Toe?</h2>
@@ -54,6 +59,7 @@
 		<p></p>
 	</div>
 	<div class="modal-fader"></div>
+
 	<script type="text/javascript" src="./js/index.js"></script>
 </body>
 </html>

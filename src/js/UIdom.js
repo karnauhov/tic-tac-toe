@@ -24,6 +24,7 @@ var UIdom = (function () {
   var _startAnswer = null;
   var _isExitAnswer = false;
   var _exitCallback = null;
+  var _ads = null;
 
   var _listenKeys = function (state) {
     if (state) {
@@ -95,7 +96,9 @@ var UIdom = (function () {
       case 13: // Enter
         _isStartAnswer = false;
         _hideAllModalWindows();
-        if (_startAnswer) {
+        if (_ads) {
+          _ads.startAds(_endAds);
+        } else if (_startAnswer) {
           _startAnswer(true);
         }
         evt.preventDefault();
@@ -126,6 +129,12 @@ var UIdom = (function () {
         _hideAllModalWindows();
         evt.preventDefault();
         break;
+    }
+  };
+
+  var _endAds = function() {
+    if (_startAnswer) {
+      _startAnswer(true);
     }
   };
 
@@ -185,8 +194,9 @@ var UIdom = (function () {
 
 
 
-  var setup = function(exitCallback) {
+  var setup = function(exitCallback, ads) {
     _exitCallback = exitCallback;
+    _ads = ads;
     _listenKeys(true);
     for(var i = 0; i < 9; i++) {
       _cells.push(document.getElementById("cell" + i));
@@ -207,6 +217,9 @@ var UIdom = (function () {
   var showStartQuestion = function(callbackAnswer) {
     _unselectAllCells();
     if(callbackAnswer) {
+      if (_ads) {
+        _ads.requestAds();
+      }
       _startAnswer = callbackAnswer;
       _isStartAnswer = true;
       _showDialog("modalStart", true);

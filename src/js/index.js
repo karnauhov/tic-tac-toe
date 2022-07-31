@@ -1,2 +1,2 @@
 // Game.start(UIdraft);
-Game.start(UIdom);
+Game.start(UIdom, Ads);

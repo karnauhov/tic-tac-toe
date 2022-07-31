@@ -5,6 +5,9 @@ var Game = (function () {
   // UI module
   var _ui = null;
 
+  // Ads module
+  var _ads = null;
+
   // Game state
   var _gs = {
     exitUrl: "https://play.works/",
@@ -138,17 +141,25 @@ var Game = (function () {
     }
   };
 
+  var _setup = function() {
+    _ui.setup.call(_ui, exitHandler, _ads);
+    if (_ads) {
+      _ads.setup();
+    }
+  };
+
   var loop = function() {
     _updateGameStateMachine();
     _ui.updateFrame(_gs.status, _gs.fld[0], _gs.fld[1], _gs.fld[2], _gs.fld[3], _gs.fld[4], _gs.fld[5], _gs.fld[6], _gs.fld[7], _gs.fld[8], _gs.cpuSign, _gs.humanSign);
   };
 
-  var start = function (ui) {
+  var start = function (ui, ads) {
     if (!ui) {
       throw Error('Please pass UI module inside function start');
     }
     _ui = ui;
-    window.onload = _ui.setup.bind(_ui, exitHandler);
+    _ads = ads;
+    window.onload = _setup;
     _intervalID = setInterval(loop, 1000 / _ui.config.FPS);
   };
 

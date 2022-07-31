@@ -1,5 +1,12 @@
 body {
   margin: 0;
+  overflow: hidden;
+}
+
+#mainContainer {
+  position: relative;
+  width: 1280px;
+  height: 720px;
 }
 
 .center {
@@ -141,4 +148,23 @@ td {
 
 .border {
   border: 2px solid #333;
+}
+
+#video-element {
+  /* forces the contents to fill the container */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  visibility: hidden;
+}
+
+#ad-container {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 1280px;
+  height: 720px;
+  visibility: hidden;
 }
